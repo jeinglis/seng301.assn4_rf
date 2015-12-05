@@ -16,25 +16,29 @@ public class ButtonHandler implements ButtonListener{
 	private MessageHandler messageHandler;	
 	private Map<Button, Integer> buttonToIndex = new HashMap<>();
 
-	
-	public ButtonHandler(VendingMachine vm, FundsHandler inFunds, MessageHandler mh){
+
+
+	public ButtonHandler(VendingMachine vm,MessageHandler mh){
 		vendingMachine = vm;
 		changeHandler = new ChangeHandler(vm,inFunds);
 		messageHandler = mh;
 		funds = inFunds;
+		
+		
+		//register selection buttons
+		for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
+		    Button sb = vendingMachine.getSelectionButton(i);
+		    sb.register(this);
+		    buttonToIndex.put(sb, i);
+		}
+		
+		//register return button
+		vm.getReturnButton().register(this);
+		buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
+		
+
 	}
-	
-	//register selection buttons
-	for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
-	    Button sb = vendingMachine.getSelectionButton(i);
-	    sb.register(this);
-	    buttonToIndex.put(sb, i);
-	}
-	
-	//register return button
-	vm.getReturnButton().register(this);
-	buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
-	
+
     @Override
     public void pressed (Button button) {
 	Integer index = buttonToIndex.get(button);

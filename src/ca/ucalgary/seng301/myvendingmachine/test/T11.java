@@ -27,7 +27,7 @@ public class T11 {
 		int receptCap=10;
 		vm = new VendingMachine(coins, buttons, cRackCap,pRackCap, receptCap);
 		vmLogic = new VendingMachineLogic(vm);
-	    vm.getCoinReceptacle().register(vmLogic);
+	    vm.getCoinReceptacle().register(vmLogic.getChangeHandler());
 	    testLogic = new TestLogic(vm);
 
 
@@ -101,7 +101,7 @@ public class T11 {
 		int receptCap=10;
 		vm = new VendingMachine(coins, buttons, cRackCap,pRackCap, receptCap);
 		vmLogic = new VendingMachineLogic(vm);
-	    vm.getCoinReceptacle().register(vmLogic);
+	    vm.getCoinReceptacle().register(vmLogic.getChangeHandler());
 	    testLogic = new TestLogic(vm);
 
 //		configure("Coke", "water", "stuff"; 250, 250, 205)
