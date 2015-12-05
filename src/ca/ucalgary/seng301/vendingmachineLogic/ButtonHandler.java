@@ -4,36 +4,37 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
 public class ButtonHandler implements ButtonListener{
 	
 	VendingMachine vendingMachine = null;
-	FundsHandler funds;
+	private MessageHandler messageHandler;
 	private ChangeHandler changeHandler;
-	private MessageHandler messageHandler;	
+	FundsHandler funds;
 	private Map<Button, Integer> buttonToIndex = new HashMap<>();
 
-	
 	public ButtonHandler(VendingMachine vm, FundsHandler inFunds, MessageHandler mh){
 		vendingMachine = vm;
 		changeHandler = new ChangeHandler(vm,inFunds);
 		messageHandler = mh;
 		funds = inFunds;
-	}
+	} 
+	{//TODO fix weird bracket error
 	
 	//register selection buttons
-	for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
+	for(int i = 0; i < vendingMachine.getNumberOfSelectionButtons(); i++) {
 	    Button sb = vendingMachine.getSelectionButton(i);
 	    sb.register(this);
 	    buttonToIndex.put(sb, i);
 	}
 	
 	//register return button
-	vm.getReturnButton().register(this);
-	buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
+	vendingMachine.getReturnButton().register(this);
+	buttonToIndex.put(vendingMachine.getReturnButton(), vendingMachine.getNumberOfSelectionButtons());
+	
+	}//TODO fix weird bracket error
 	
     @Override
     public void pressed (Button button) {

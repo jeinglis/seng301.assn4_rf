@@ -17,7 +17,7 @@ public class VendingMachineLogic {
     protected int availableFunds = 0;
     private VendingMachine vendingMachine;
     private ButtonHandler buttonHandler;
-    private ChangeHandler changeHandler;
+   
     private FundsHandler funds;
     private MessageHandler messageHandler;
     

@@ -21,6 +21,7 @@ public class FundsHandler {
 	}
 	
 	public void returnFunds(){	
+		messageHandler.setDisplay("default");
 	}
 	
 	public int getAvailableFunds() {
