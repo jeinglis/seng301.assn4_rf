@@ -4,15 +4,18 @@ import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
 
-public class PaymentMethod_Coin extends CurrencyHandler {
+public class PaymentMethod_Coin {
 
-	public PaymentMethod_Coin(VendingMachine vendingMachine){
+	VendingMachine vendingMachine;
+	
+	public PaymentMethod_Coin(VendingMachine vm){
+		vendingMachine = vm;
 		vendingMachine.getCoinSlot().register(this);
 
 		
 	}
 	
-	vm.getCoinSlot().register(this);
+	vendingMachine.getCoinSlot().register(this);
 
 	
 	

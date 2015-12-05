@@ -2,6 +2,7 @@ package ca.ucalgary.seng301.vendingmachineLogic;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -11,11 +12,12 @@ import ca.ucalgary.seng301.vendingmachine.Coin;
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
-public class ChangeLogic implements CoinSlotListener, CoinReceptacleListener  {
-	
-	public ChangeLogic(VendingMachine vendingMachine){
-		
-		
+public class ChangeHandler implements CoinReceptacleListener  {
+    private Map<Integer, Integer> valueToIndexMap = new HashMap<>();
+    private VendingMachine vendingMachine = null;
+    
+	public ChangeHandler(VendingMachine vm, FundsHandler funds){
+		vendingMachine = vm;
 	}
 
     private Map<Integer, List<Integer>> changeHelper(ArrayList<Integer> values, int index, int changeDue) {
@@ -60,7 +62,7 @@ public class ChangeLogic implements CoinSlotListener, CoinReceptacleListener  {
 	return newMap;
     }
 
-    private int deliverChange(int cost, int entered) throws CapacityExceededException, EmptyException, DisabledException {
+    protected int deliverChange(int cost, int entered) throws CapacityExceededException, EmptyException, DisabledException {
 	int changeDue = entered - cost;
 
 	if(changeDue < 0)
@@ -97,8 +99,7 @@ public class ChangeLogic implements CoinSlotListener, CoinReceptacleListener  {
 	@Override
 	public void coinAdded(CoinReceptacle receptacle, Coin coin) {
 		// TODO Auto-generated method stub
-		display("Money In");		
-		
+
 	}
 
 	@Override
@@ -125,17 +126,6 @@ public class ChangeLogic implements CoinSlotListener, CoinReceptacleListener  {
 		
 	}
 
-    @Override
-    public void validCoinInserted(CoinSlot coinSlotSimulator, Coin coin) {
-	availableFunds += coin.getValue();
-    }
-
-    @Override
-    public void coinRejected(CoinSlot coinSlotSimulator, Coin coin) {
-	
-
-
-    }
     
 	
 	
