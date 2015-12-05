@@ -1,46 +1,54 @@
 package ca.ucalgary.seng301.vendingmachineLogic;
+
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
-public class ButtonLogic implements ButtonListener{
+public class ButtonHandler implements ButtonListener{
+	
 	VendingMachine vendingMachine = null;
-	
-	
-	public ButtonLogic(VendingMachine vm){
-		vendingMachine = vm;
-		
-		
-	}
-	
-	
+	FundsHandler funds;
+	private ChangeHandler changeHandler;
+	private MessageHandler messageHandler;	
+	private Map<Button, Integer> buttonToIndex = new HashMap<>();
 
 	
+	public ButtonHandler(VendingMachine vm, FundsHandler inFunds, MessageHandler mh){
+		vendingMachine = vm;
+		changeHandler = new ChangeHandler(vm,inFunds);
+		messageHandler = mh;
+		funds = inFunds;
+	}
+	
+	//register selection buttons
 	for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
-	    Button sb = vm.getSelectionButton(i);
+	    Button sb = vendingMachine.getSelectionButton(i);
 	    sb.register(this);
 	    buttonToIndex.put(sb, i);
 	}
 	
-	 vm.getReturnButton().register(this);
+	//register return button
+	vm.getReturnButton().register(this);
 	buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
 	
     @Override
-    public void pressed(Button button) {
+    public void pressed (Button button) {
 	Integer index = buttonToIndex.get(button);
 
 	if(index == null)
 	    throw new SimulationException("An invalid selection button was pressed");
 	
 	if(button == vendingMachine.getReturnButton() ){
-		if(availableFunds <= 0) return;
+		if(funds.getAvailableFunds() <= 0) return;
 		
 		try {
 			vendingMachine.getCoinReceptacle().returnCoins();
-			availableFunds = 0;
-			display("default");
+			funds.returnFunds();
+			
 		}
 		catch(DisabledException | CapacityExceededException e) {
 		    throw new SimulationException(e);
@@ -49,13 +57,13 @@ public class ButtonLogic implements ButtonListener{
 	
 	int cost = vendingMachine.getProductKindCost(index);
 	
-	if(cost <= availableFunds) {
+	if(cost <= funds.getAvailableFunds() ) {
 	    ProductRack pcr = vendingMachine.getProductRack(index);
 	    if(pcr.size() > 0) {
 		try {
 		    pcr.dispenseProduct();
 		    vendingMachine.getCoinReceptacle().storeCoins();
-		    availableFunds = deliverChange(cost, availableFunds);
+		    funds.setAvailableFunds(changeHandler.deliverChange(cost, funds.getAvailableFunds()));
 		}
 		catch(DisabledException | EmptyException | CapacityExceededException e) {
 		    throw new SimulationException(e);
@@ -63,7 +71,7 @@ public class ButtonLogic implements ButtonListener{
 	    }
 	}
 	else {
-	    display("Insufficient Funds");
+		messageHandler.setDisplay("Insufficient Funds");
 	    final Timer timer = new Timer();
 	    timer.schedule(new TimerTask() {
 		@Override
@@ -71,10 +79,10 @@ public class ButtonLogic implements ButtonListener{
 		    timer.cancel();
 		}
 	    }, 5000);
-	    display("Money In");	
+	    messageHandler.setDisplay("Money In");	
 	}
-	if (availableFunds == 0)
-		display("Default");
+	if (funds.empty())
+		 messageHandler.setDisplay("Default");
   }
 
 
@@ -90,37 +98,5 @@ public class ButtonLogic implements ButtonListener{
 		// TODO Auto-generated method stub
     	vendingMachine.getOutOfOrderLight().activate();	
 	}
-
-    
-	
-	
-	
-	
-//	
-//	vm.getReturnButton().register(new ButtonListener() {
-//		
-//
-//
-//		@Override
-//		public void pressed(Button button) {
-//			if(availableFunds <= 0) return;
-//			
-//				try {
-//					vendingMachine.getCoinReceptacle().returnCoins();
-//					availableFunds = 0;
-//					display("default");
-//				}
-//				catch(DisabledException | CapacityExceededException e) {
-//				    throw new SimulationException(e);
-//				}
-//		}			
-//		
-//	});
-//	
-//	for(int i = 0; i < vm.getNumberOfCoinRacks(); i++) {
-//	    int value = vm.getCoinKindForRack(i);
-//	    valueToIndexMap.put(value, i);
-//	}
-
 
 }
