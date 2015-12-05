@@ -18,16 +18,17 @@ public class VendingMachineLogic {
     private VendingMachine vendingMachine;
     private ButtonHandler buttonHandler;
     private ChangeHandler changeHandler;
-
-	private FundsHandler funds;
+	private AbstractFundsHandler paymentMethod1;
     private MessageHandler messageHandler;
     
     public VendingMachineLogic(VendingMachine vm) {
 	vendingMachine = vm;
-	funds = new FundsHandler(vendingMachine,messageHandler);
-	buttonHandler = new ButtonHandler(vendingMachine, funds,messageHandler);
-	changeHandler = new ChangeHandler(vendingMachine,funds);
-	messageHandler = new MessageHandler(vendingMachine, funds);
+	
+	paymentMethod1 = new PaymentMethod_Coin(vendingMachine);
+	buttonHandler = new ButtonHandler(vendingMachine,messageHandler);
+	changeHandler = new ChangeHandler(vendingMachine);
+	messageHandler = new MessageHandler(vendingMachine);
+	
     }
     
     public ChangeHandler getChangeHandler() {

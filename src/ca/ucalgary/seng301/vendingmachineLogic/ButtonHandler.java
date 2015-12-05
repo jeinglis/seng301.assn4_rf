@@ -11,7 +11,7 @@ import ca.ucalgary.seng301.vendingmachine.hardware.*;
 public class ButtonHandler implements ButtonListener{
 	
 	VendingMachine vendingMachine = null;
-	FundsHandler funds;
+	AbstractFundsHandler funds;
 	private ChangeHandler changeHandler;
 	private MessageHandler messageHandler;	
 	private Map<Button, Integer> buttonToIndex = new HashMap<>();
@@ -20,10 +20,8 @@ public class ButtonHandler implements ButtonListener{
 
 	public ButtonHandler(VendingMachine vm,MessageHandler mh){
 		vendingMachine = vm;
-		changeHandler = new ChangeHandler(vm,inFunds);
-		messageHandler = mh;
-		funds = inFunds;
-		
+		changeHandler = new ChangeHandler(vm);
+		messageHandler = mh;		
 		
 		//register selection buttons
 		for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
@@ -47,12 +45,11 @@ public class ButtonHandler implements ButtonListener{
 	    throw new SimulationException("An invalid selection button was pressed");
 	
 	if(button == vendingMachine.getReturnButton() ){
-		if(funds.getAvailableFunds() <= 0) return;
+		if(AbstractFundsHandler.getAvailableFunds() <= 0) return;
 		
 		try {
 			vendingMachine.getCoinReceptacle().returnCoins();
-			funds.returnFunds();
-			
+			AbstractFundsHandler.setAvailableFunds(0);
 		}
 		catch(DisabledException | CapacityExceededException e) {
 		    throw new SimulationException(e);
@@ -61,13 +58,13 @@ public class ButtonHandler implements ButtonListener{
 	
 	int cost = vendingMachine.getProductKindCost(index);
 	
-	if(cost <= funds.getAvailableFunds() ) {
+	if(cost <= AbstractFundsHandler.getAvailableFunds() ) {
 	    ProductRack pcr = vendingMachine.getProductRack(index);
 	    if(pcr.size() > 0) {
 		try {
 		    pcr.dispenseProduct();
 		    vendingMachine.getCoinReceptacle().storeCoins();
-		    funds.setAvailableFunds(changeHandler.deliverChange(cost, funds.getAvailableFunds()));
+		    AbstractFundsHandler.setAvailableFunds(changeHandler.deliverChange(cost, AbstractFundsHandler.getAvailableFunds()));
 		}
 		catch(DisabledException | EmptyException | CapacityExceededException e) {
 		    throw new SimulationException(e);
@@ -85,7 +82,7 @@ public class ButtonHandler implements ButtonListener{
 	    }, 5000);
 	    messageHandler.setDisplay("Money In");	
 	}
-	if (funds.empty())
+	if (AbstractFundsHandler.empty())
 		 messageHandler.setDisplay("Default");
   }
 

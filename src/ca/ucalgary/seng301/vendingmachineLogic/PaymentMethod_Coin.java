@@ -5,7 +5,7 @@ import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
 
-public class PaymentMethod_Coin extends FundsHandler implements CoinSlotListener {
+public class PaymentMethod_Coin extends AbstractFundsHandler implements CoinSlotListener {
 
 	VendingMachine vendingMachine;
 	

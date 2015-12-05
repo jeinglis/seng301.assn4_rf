@@ -16,7 +16,7 @@ public class ChangeHandler implements CoinReceptacleListener  {
     private Map<Integer, Integer> valueToIndexMap = new HashMap<>();
     private VendingMachine vendingMachine = null;
     
-	public ChangeHandler(VendingMachine vm, FundsHandler funds){
+	public ChangeHandler(VendingMachine vm){
 		vendingMachine = vm;
 	}
 

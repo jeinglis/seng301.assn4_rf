@@ -1,31 +1,28 @@
 package ca.ucalgary.seng301.vendingmachineLogic;
-import ca.ucalgary.seng301.vendingmachine.hardware.*;
-import java.util.*;
 
 
-
-public abstract class FundsHandler {
+public abstract class AbstractFundsHandler {
 	protected static int availableFunds;
 
-	public FundsHandler(){
+	public AbstractFundsHandler(){
 	}
 	
-	public void incrementFunds(int value){
+	protected void incrementFunds(int value){
 		//messageHandler.setDisplay("Money In");
 		availableFunds += value;
 	}
-	public void decrementFunds(int value){
+	protected static void decrementFunds(int value){
 		availableFunds -=value;
 	}
 
-	public static int getAvailableFunds() {
+	protected static int getAvailableFunds() {
 		return availableFunds;
 	}
-	public void setAvailableFunds(int value) {
+	protected static void setAvailableFunds(int value) {
 		availableFunds = value;
 	}
 
-	public Boolean empty(){
+	protected static Boolean empty(){
 		if(availableFunds == 0)
 			return true;
 		else
