@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
+import PurchaseFacade.Coin;
 
 /**
  * Listens for events emanating from a coin slot.

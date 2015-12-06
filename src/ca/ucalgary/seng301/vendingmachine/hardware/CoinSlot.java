@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
+import PurchaseFacade.Coin;
 
 /**
  * Represents a simple coin slot device that has two output channels, one to a

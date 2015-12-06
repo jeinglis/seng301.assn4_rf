@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
-import ca.ucalgary.seng301.vendingmachine.Product;
+import PurchaseFacade.Coin;
+import PurchaseFacade.Product;
 
 /**
  * Represents a standard configuration of the vending machine hardware:

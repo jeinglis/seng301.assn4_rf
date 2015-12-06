@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import ca.ucalgary.seng301.vendingmachine.Product;
+import PurchaseFacade.Product;
 
 /**
  * Listens for events emanating from a product rack.

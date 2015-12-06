@@ -1,10 +1,11 @@
-package ca.ucalgary.seng301.vendingmachineLogic;
+package FundsFacade;
 
 
 public abstract class AbstractFundsHandler {
 	protected static int availableFunds;
 
 	public AbstractFundsHandler(){
+		availableFunds =0;
 	}
 	
 	protected void incrementFunds(int value){
@@ -15,14 +16,14 @@ public abstract class AbstractFundsHandler {
 		availableFunds -=value;
 	}
 
-	protected static int getAvailableFunds() {
+	public static int getAvailableFunds() {
 		return availableFunds;
 	}
-	protected static void setAvailableFunds(int value) {
+	public static void setAvailableFunds(int value) {
 		availableFunds = value;
 	}
 
-	protected static Boolean empty(){
+	public static Boolean empty(){
 		if(availableFunds == 0)
 			return true;
 		else

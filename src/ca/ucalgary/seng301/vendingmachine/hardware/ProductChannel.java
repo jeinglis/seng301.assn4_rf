@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import ca.ucalgary.seng301.vendingmachine.Product;
+import PurchaseFacade.Product;
 
 /**
  * Represents the hardware through which a product is carried from one device to

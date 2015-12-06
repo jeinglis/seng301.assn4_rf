@@ -3,8 +3,8 @@ package ca.ucalgary.seng301.vendingmachineLogic;
 import java.util.ArrayList;
 import java.util.List;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
-import ca.ucalgary.seng301.vendingmachine.Product;
+import PurchaseFacade.Coin;
+import PurchaseFacade.Product;
 import ca.ucalgary.seng301.vendingmachine.hardware.CoinRack;
 import ca.ucalgary.seng301.vendingmachine.hardware.DisabledException;
 import ca.ucalgary.seng301.vendingmachine.hardware.ProductRack;
@@ -34,7 +34,7 @@ public class TestLogic {
 
 		for(Object delivery: vm.getDeliveryChute().removeItems()){
 
-			if(delivery.getClass().getName() == "ca.ucalgary.seng301.vendingmachine.Coin"){
+			if(delivery.getClass().getName() == "PurchaseFacade.Coin"){
 				deliveryCoin += (Integer)((Coin) delivery).getValue();
 			}
 			else{

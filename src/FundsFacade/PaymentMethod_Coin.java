@@ -1,5 +1,5 @@
-package ca.ucalgary.seng301.vendingmachineLogic;
-import ca.ucalgary.seng301.vendingmachine.Coin;
+package FundsFacade;
+import PurchaseFacade.Coin;
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 

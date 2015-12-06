@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import ca.ucalgary.seng301.vendingmachine.Product;
+import PurchaseFacade.Product;
 
 /**
  * Represents a storage rack for products within the vending machine. More than

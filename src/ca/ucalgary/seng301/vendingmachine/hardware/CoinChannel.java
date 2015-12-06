@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
+import PurchaseFacade.Coin;
 
 /**
  * Represents a simple device (like, say, a tube) that allows coins to move

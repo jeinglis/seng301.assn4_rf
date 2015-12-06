@@ -10,14 +10,22 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.TreeMap;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
+import CommunicationFacade.DisplayHandler;
+import CommunicationFacade.LEDHandler;
+import CommunicationFacade.MessageHandler;
+import FundsFacade.AbstractFundsHandler;
+import FundsFacade.PaymentMethod_Coin;
+import PurchaseFacade.ButtonHandler;
+import PurchaseFacade.Coin;
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 public class VendingMachineLogic {
     protected int availableFunds = 0;
     private VendingMachine vendingMachine;
     private ButtonHandler buttonHandler;
+    private DisplayHandler displayListener;
     private MessageHandler messageHandler;
+    private LEDHandler ledHandler;
     
     /*Payment Methods*/
     private AbstractFundsHandler paymentMethod1;
@@ -25,7 +33,10 @@ public class VendingMachineLogic {
     public VendingMachineLogic(VendingMachine vm) {
 	vendingMachine = vm;
 	paymentMethod1 = new PaymentMethod_Coin(vendingMachine);
-	buttonHandler = new ButtonHandler(vendingMachine,messageHandler);
+	displayListener = new DisplayHandler();
+	messageHandler = new MessageHandler(vendingMachine);
+	ledHandler = new LEDHandler(vendingMachine);
+	buttonHandler = new ButtonHandler(vendingMachine);
 	
 	//messageHandler = new MessageHandler(vendingMachine);
 	

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import ca.ucalgary.seng301.vendingmachine.Coin;
+import PurchaseFacade.Coin;
 
 /**
  * A temporary storage device for coins. A coin receptacle can be disabled to

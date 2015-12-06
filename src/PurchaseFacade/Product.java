@@ -1,4 +1,4 @@
-package ca.ucalgary.seng301.vendingmachine;
+package PurchaseFacade;
 
 /**
  * Represents a pop can. It has no methods or fields because a pop can is a

@@ -1,17 +1,16 @@
-package ca.ucalgary.seng301.vendingmachineLogic;
+package CommunicationFacade;
 
+import FundsFacade.AbstractFundsHandler;
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 public class MessageHandler 
 {
 	VendingMachine vendingMachine = null;
 	Display disp = null;
-	AbstractFundsHandler funds;
 	
 	
-	public MessageHandler(VendingMachine vm, AbstractFundsHandler inFunds){
+	public MessageHandler(VendingMachine vm){
 		vendingMachine = vm;
-		funds = inFunds;
 	    disp = vendingMachine.getDisplay();
 	    disp.display("Drink Pop!");	
 	}
@@ -32,7 +31,7 @@ public class MessageHandler
 			disp.display("Drink Pop!");
 			break;
 		case "Coins In":
-			disp.display("total "+ funds.getAvailableFunds() +"units");
+			//disp.display("total "+ funds.getAvailableFunds() +"units");
 			break;
 	}
 	
