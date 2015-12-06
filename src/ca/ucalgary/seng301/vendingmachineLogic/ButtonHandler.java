@@ -11,54 +11,67 @@ import ca.ucalgary.seng301.vendingmachine.hardware.*;
 public class ButtonHandler implements ButtonListener{
 	
 	VendingMachine vendingMachine = null;
-	AbstractFundsHandler funds;
 	private ChangeHandler changeHandler;
 	private MessageHandler messageHandler;	
-	private Map<Button, Integer> buttonToIndex = new HashMap<>();
+	private Map<Button, Integer> buttonToIndex;
 
 
 
 	public ButtonHandler(VendingMachine vm,MessageHandler mh){
 		vendingMachine = vm;
-		changeHandler = new ChangeHandler(vm);
 		messageHandler = mh;		
+		changeHandler = new ChangeHandler(vendingMachine);
+		buttonToIndex = new HashMap<>();
 		
 		//register selection buttons
 		for(int i = 0; i < vm.getNumberOfSelectionButtons(); i++) {
 		    Button sb = vendingMachine.getSelectionButton(i);
 		    sb.register(this);
 		    buttonToIndex.put(sb, i);
+		   System.out.printf("button %d registered \n",i); //TODO delete this
 		}
-		
-		//register return button
-		vm.getReturnButton().register(this);
-		buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
-		
+//		
+//		//register return button
+//		vm.getReturnButton().register(this);
+//		buttonToIndex.put(vm.getReturnButton(), vm.getNumberOfSelectionButtons());
+//		
 
 	}
+	
+    
+    public ChangeHandler getChangeHandler() {
+		return changeHandler;
+	}
+
+
+
 
     @Override
     public void pressed (Button button) {
-	Integer index = buttonToIndex.get(button);
-
+	Integer index = buttonToIndex.get(button); 
+	System.out.printf("%d pressed \n",index); //TODO delete this
 	if(index == null)
 	    throw new SimulationException("An invalid selection button was pressed");
 	
-	if(button == vendingMachine.getReturnButton() ){
-		if(AbstractFundsHandler.getAvailableFunds() <= 0) return;
-		
-		try {
-			vendingMachine.getCoinReceptacle().returnCoins();
-			AbstractFundsHandler.setAvailableFunds(0);
-		}
-		catch(DisabledException | CapacityExceededException e) {
-		    throw new SimulationException(e);
-		}
-	}
+//	if(button == vendingMachine.getReturnButton() ){
+//		if(AbstractFundsHandler.getAvailableFunds() <= 0) return;
+//		
+//		try {
+//			vendingMachine.getCoinReceptacle().returnCoins();
+//			AbstractFundsHandler.setAvailableFunds(0);
+//		}
+//		catch(DisabledException | CapacityExceededException e) {
+//		    throw new SimulationException(e);
+//		}
+//	}
 	
 	int cost = vendingMachine.getProductKindCost(index);
+	System.out.printf(" item costs %d \n",cost); //TODO delete this
+
+	
 	
 	if(cost <= AbstractFundsHandler.getAvailableFunds() ) {
+		System.out.printf("in the correct if available funds = %d \n",AbstractFundsHandler.getAvailableFunds()); //TODO delete this
 	    ProductRack pcr = vendingMachine.getProductRack(index);
 	    if(pcr.size() > 0) {
 		try {

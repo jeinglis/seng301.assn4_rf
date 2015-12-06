@@ -92,7 +92,8 @@ public abstract class AbstractHardware<T extends AbstractHardwareListener> {
 	    }
 	}
 	catch(Exception e) {
-	    throw new SimulationException(e);
+		System.out.printf("simulation exception in event %s",eventNotificationMethodName);//TODO delete this and ucomment line below
+	    //throw new SimulationException(e);
 	}
     }
 
