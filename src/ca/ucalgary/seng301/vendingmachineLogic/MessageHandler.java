@@ -6,10 +6,10 @@ public class MessageHandler
 {
 	VendingMachine vendingMachine = null;
 	Display disp = null;
-	FundsHandler funds;
+	AbstractFundsHandler funds;
 	
 	
-	public MessageHandler(VendingMachine vm, FundsHandler inFunds){
+	public MessageHandler(VendingMachine vm, AbstractFundsHandler inFunds){
 		vendingMachine = vm;
 		funds = inFunds;
 	    disp = vendingMachine.getDisplay();
