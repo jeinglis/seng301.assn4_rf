@@ -26,7 +26,7 @@ public class T01 {
 		int receptCap=10;
 		vm = new VendingMachine(coins, buttons, cRackCap,pRackCap, receptCap);
 		vmLogic = new VendingMachineLogic(vm);
-	    vm.getCoinReceptacle().register(vmLogic);
+	    vm.getCoinReceptacle().register(vmLogic.getButtonHandler().getChangeHandler());
 	    testLogic = new TestLogic(vm);
 
 	}
@@ -58,7 +58,7 @@ public class T01 {
 
 //		press(0)
 		vm.getSelectionButton(0).press();
-		
+
 //		extract()
 //		CHECK_DELIVERY(0, "Coke")
 		Object [] extractExpected = {"Coke",new Integer(0)};

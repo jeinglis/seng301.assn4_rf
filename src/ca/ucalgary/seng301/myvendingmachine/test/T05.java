@@ -27,7 +27,7 @@ public class T05 {
 		int receptCap=10;
 		vm = new VendingMachine(coins, buttons, cRackCap,pRackCap, receptCap);
 		vmLogic = new VendingMachineLogic(vm);
-	    vm.getCoinReceptacle().register(vmLogic);
+	    vm.getCoinReceptacle().register(vmLogic.getButtonHandler().getChangeHandler());
 	    testLogic = new TestLogic(vm);
 
 
