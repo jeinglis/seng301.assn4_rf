@@ -1,4 +1,4 @@
-package FundsFacade;
+package ca.ucalgary.seng301.vendingmachineLogic;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -8,17 +8,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import PurchaseFacade.Coin;
+import ca.ucalgary.seng301.vendingmachine.Coin;
 import ca.ucalgary.seng301.vendingmachine.hardware.*;
 
 
-public class ChangeHandler implements CoinReceptacleListener  {
+public class ChangeHandler {
     private Map<Integer, Integer> valueToIndexMap = new HashMap<>();
     private VendingMachine vendingMachine;
     
 	public ChangeHandler(VendingMachine vm){
 		vendingMachine = vm;	    
-	    vm.getCoinReceptacle().register(this);
 		for(int i = 0; i < vm.getNumberOfCoinRacks(); i++) {
 		    int value = vm.getCoinKindForRack(i);
 		    valueToIndexMap.put(value, i);
@@ -103,35 +102,6 @@ public class ChangeHandler implements CoinReceptacleListener  {
     }
      
 
-	@Override
-	public void coinAdded(CoinReceptacle receptacle, Coin coin) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void coinsRemoved(CoinReceptacle receptacle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void coinsFull(CoinReceptacle receptacle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void enabled(AbstractHardware<AbstractHardwareListener> hardware) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void disabled(AbstractHardware<AbstractHardwareListener> hardware) {
-		// TODO Auto-generated method stub
-		
-	}
 
     
 	

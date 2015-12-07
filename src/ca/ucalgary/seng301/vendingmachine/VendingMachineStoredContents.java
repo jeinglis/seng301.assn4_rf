@@ -1,4 +1,4 @@
-package PurchaseFacade;
+package ca.ucalgary.seng301.vendingmachine;
 
 import java.util.ArrayList;
 import java.util.List;

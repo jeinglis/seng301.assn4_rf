@@ -1,6 +1,6 @@
 package ca.ucalgary.seng301.vendingmachine.hardware;
 
-import PurchaseFacade.Coin;
+import ca.ucalgary.seng301.vendingmachine.Coin;
 
 /**
  * A simple interface to allow a device to communicate with another device that

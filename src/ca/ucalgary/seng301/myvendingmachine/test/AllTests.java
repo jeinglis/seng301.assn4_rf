@@ -18,6 +18,7 @@ import org.junit.runners.Suite.SuiteClasses;
 				T11.class,
 				T12.class,
 				T13.class,
+				AS401.class,
 //				U01.class,
 				U02.class,
 				U03.class,

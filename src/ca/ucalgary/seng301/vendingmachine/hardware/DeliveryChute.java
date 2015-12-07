@@ -2,8 +2,8 @@ package ca.ucalgary.seng301.vendingmachine.hardware;
 
 import java.util.Vector;
 
-import PurchaseFacade.Coin;
-import PurchaseFacade.Product;
+import ca.ucalgary.seng301.vendingmachine.Coin;
+import ca.ucalgary.seng301.vendingmachine.Product;
 
 /**
  * Represents a simple delivery chute device. The delivery chute has a finite

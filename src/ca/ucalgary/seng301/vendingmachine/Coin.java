@@ -1,4 +1,4 @@
-package PurchaseFacade;
+package ca.ucalgary.seng301.vendingmachine;
 
 import ca.ucalgary.seng301.vendingmachine.hardware.SimulationException;
 

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-import PurchaseFacade.Coin;
+import ca.ucalgary.seng301.vendingmachine.Coin;
 
 /**
  * Represents a device that stores coins of a particular denomination to

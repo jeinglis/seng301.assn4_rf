@@ -32,7 +32,7 @@ public class AS401{
 	
 	
 	@Test
-	public void good_Return_Button_Before_Purchase() {
+	public void good_Return_Button_Before_Purchase_After_Insert() {
 		
 		//configure("Coke", "water","stuff"; 250, 250, 205)
 		String [] popNames = {"Coke","water","stuff"};
@@ -51,25 +51,108 @@ public class AS401{
 //		insert(25)
 //		insert(25)
 		testLogic.insertCoin(100);
-		testLogic.insertCoin(100);
-		testLogic.insertCoin(25);
-		testLogic.insertCoin(25);
 		vm.getReturnButton().press();
-
-
-//		press(0)
-		vm.getSelectionButton(0).press();
-		
-//		extract()
-		Object [] extractExpected = {new Integer(250)};
+		Object [] extractExpected = {new Integer(100)};
 
 		assertArrayEquals(extractExpected, testLogic.extract());
 		
-//		unload()
-//		CHECK_TEARDOWN(65; 0;"Coke", "water", "stuff")
-		Object [] unloadExpected = {new Integer(65),new Integer(0),new String("Coke"),new String("water"),new String("stuff")};
-		assertArrayEquals( unloadExpected, testLogic.unload());
+		
+//		testLogic.insertCoin(100);
+//		testLogic.insertCoin(25);
+//		testLogic.insertCoin(25);
+//		vm.getReturnButton().press();
+//
+//
+////		press(0)
+//		vm.getSelectionButton(0).press();
+//		
+////		extract()
+//		Object [] extractExpected = {new Integer(250)};
+//
+//		assertArrayEquals(extractExpected, testLogic.extract());
+//		
+////		unload()
+////		CHECK_TEARDOWN(65; 0;"Coke", "water", "stuff")
+//		Object [] unloadExpected = {new Integer(65),new Integer(0),new String("Coke"),new String("water"),new String("stuff")};
+//		assertArrayEquals( unloadExpected, testLogic.unload());
 
 	}
+	
+//	
+//	@Test
+//	public void good_Return_Button_Before_Insert_Before_Insert() {
+//		
+//		//configure("Coke", "water","stuff"; 250, 250, 205)
+//		String [] popNames = {"Coke","water","stuff"};
+//		Integer [] popCosts = {250,250,205};
+//		vm.configure(Arrays.asList(popNames), Arrays.asList(popCosts));
+//		
+//		//load(1, 1, 2, 0; 1, 1, 1)
+//		int[] coinCounts = {1,1,2,0};
+//		int[] productCounts = {1,1,1};
+//		testLogic.loadCoins(coinCounts);
+//		testLogic.loadProducts(productCounts);
+//		//vm.getDisplay().
+//		
+//		
+//		vm.getReturnButton().press();
+////		insert(100)
+////		insert(100)
+////		insert(25)
+////		insert(25)
+//		testLogic.insertCoin(100);
+//		testLogic.insertCoin(100);
+//		testLogic.insertCoin(25);
+//		testLogic.insertCoin(25);
+//
+//
+////		press(0)
+//		vm.getSelectionButton(0).press();
+//		
+////		extract()
+////		CHECK_DELIVERY(0, "Coke")
+//		Object [] extractExpected = {"Coke",new Integer(0)};
+//
+//		assertArrayEquals(extractExpected, testLogic.extract());
+//		
+////		unload()
+////		CHECK_TEARDOWN(315; 0; "water", "stuff")
+//		Object [] unloadExpected = {new Integer(315),new Integer(0),new String("water"),new String("stuff")};
+//		assertArrayEquals( unloadExpected, testLogic.unload());
+//	}
+//
+//	
+//	@Test
+//	public void good_returnMoney_Then_Extract() {
+//		
+//		//configure("Coke", "water","stuff"; 250, 250, 205)
+//		String [] popNames = {"Coke","water","stuff"};
+//		Integer [] popCosts = {250,250,205};
+//		vm.configure(Arrays.asList(popNames), Arrays.asList(popCosts));
+//		
+//		
+//		//vm.getDisplay().
+//		//load(1, 1, 2, 0; 1, 1, 1)
+//		int[] coinCounts = {1,1,2,0};
+//		int[] productCounts = {1,1,1};
+//		testLogic.loadCoins(coinCounts);
+//		testLogic.loadProducts(productCounts);
+//		//vm.getDisplay().
+//		vm.getReturnButton().press();
+//
+////		extract()
+//		Object [] extractExpected = {new Integer(0)};
+//
+//		assertArrayEquals(extractExpected, testLogic.extract());
+//		
+////		unload()
+////		CHECK_TEARDOWN(65; 0;"Coke", "water", "stuff")
+//		Object [] unloadExpected = {new Integer(65),new Integer(0),new String("Coke"),new String("water"),new String("stuff")};
+//		assertArrayEquals( unloadExpected, testLogic.unload());
+//
+//	}
+//	
+//	
+
 
 }

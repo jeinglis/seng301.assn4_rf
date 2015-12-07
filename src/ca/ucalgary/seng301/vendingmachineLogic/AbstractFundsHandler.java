@@ -1,4 +1,6 @@
-package FundsFacade;
+package ca.ucalgary.seng301.vendingmachineLogic;
+
+import CommunicationFacade.DisplayMessages;
 
 
 public abstract class AbstractFundsHandler {
@@ -9,11 +11,11 @@ public abstract class AbstractFundsHandler {
 	}
 	
 	protected void incrementFunds(int value){
-		//messageHandler.setDisplay("Money In");
 		availableFunds += value;
+	    DisplayMessages.setDisplayFundsIn();
 	}
 	protected static void decrementFunds(int value){
-		availableFunds -=value;
+		availableFunds -= value;
 	}
 
 	public static int getAvailableFunds() {
@@ -28,6 +30,9 @@ public abstract class AbstractFundsHandler {
 			return true;
 		else
 			return false;
+	}
+	
+	public void returnFunds() {
 	}
 
 }
